@@ -61,12 +61,6 @@ export default function PremiumTariff() {
             </div>
 
             {/* Payment Button */}
-            <div>
-                <Link to="/success-payment">
-
-                payment sucess
-                </Link>
-            </div>
             <button
                 className="mt-16 mb-4 px-6 py-3 bg-yellow-500 text-white rounded-lg text-lg font-semibold disabled:opacity-50 w-full max-w-md cursor-pointer"
                 disabled={!selected}
