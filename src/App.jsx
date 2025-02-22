@@ -6,6 +6,7 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import Layout from "./pages/Layout.jsx";
 import MediumTariff from "./pages/MediumTariff.jsx";
 import PremiumTariff from "./pages/PremiumTariff.jsx";
+import Success from "./pages/Success.jsx";
 
 function App() {
 
@@ -29,7 +30,12 @@ function App() {
                 {
                     path: "/premium",
                     element: <PremiumTariff />,
-                }
+                },
+                {
+                    path: "/success-payment",
+                    element: <Success />,
+                },
+
             ]
         }
     ])
