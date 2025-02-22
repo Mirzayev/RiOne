@@ -88,6 +88,8 @@ export default function Tariffs() {
                         className="fa-solid fa-check text-[#FBB621] "></i> <p>Increased Storage</p></div>
                 </div>
             </div>
+
+
         </div>
     );
 }
