@@ -2,11 +2,10 @@ import React from "react";
 import './App.css'
 import Tariffs from "./pages/Tariffs.jsx";
 import LightTraiff from "./pages/LightTraiff.jsx";
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import {createBrowserRouter, RouterProvider, useParams} from "react-router-dom";
 import Layout from "./pages/Layout.jsx";
-import MediumTariff from "./pages/MediumTariff.jsx";
-import PremiumTariff from "./pages/PremiumTariff.jsx";
 import Success from "./pages/Success.jsx";
+import Detail from "./components/Detail.jsx";
 
 function App() {
 
@@ -20,17 +19,10 @@ function App() {
                     element: <Tariffs />,
                 },
                 {
-                    path: "/light",
-                    element: <LightTraiff />,
+                    path: "plans/:id",
+                    element: <Detail />,
                 },
-                {
-                    path: "/medium",
-                    element: <MediumTariff />,
-                },
-                {
-                    path: "/premium",
-                    element: <PremiumTariff />,
-                },
+
                 {
                     path: "/success-payment",
                     element: <Success />,
