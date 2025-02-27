@@ -32,7 +32,7 @@ export default function Tariffs() {
                     setLoading(false);
                 })
         }
-    console.log(searchParams.get('token'),"token")
+    // console.log(searchParams.get('token'),"token")
 
     }, []);
 

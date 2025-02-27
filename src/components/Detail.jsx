@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {NavLink, useParams} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 export default function Detail() {
     const {id} = useParams();
@@ -7,8 +8,9 @@ export default function Detail() {
     const [tariff, setTariff] = useState(null);
     const [loading, setLoading] = useState(true);
     const [selectedPlan, setSelectedPlan] = useState(null);
+    const navigate = useNavigate();
 
-
+    const back = localStorage.getItem('token')
 
     useEffect(() => {
         const fetchTariff = async () => {
@@ -88,7 +90,9 @@ export default function Detail() {
             {/* Logo va sarlavha */}
             <div className="flex w-full items-center mt-6 mb-6">
                 <div className="flex justify-start">
-                    <NavLink to="/"> <i className="fa-solid fa-arrow-left"></i> </NavLink>
+                    <NavLink to={`/?token=${back}`} className="back-button">
+                        <i className="fa-solid fa-arrow-left"></i>
+                    </NavLink>
                 </div>
                 <div className="flex w-full justify-center">
                     <p className="text-center font-medium text-[16px]">{tariff.name}</p>
