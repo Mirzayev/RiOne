@@ -104,7 +104,7 @@ export default function Detail() {
                     tariff.subscriptions.map((sub) => (
                         <div
                             key={sub.id}
-                            className={`p-4 rounded-lg border ${selectedPlan === sub.id ? "bg-yellow-50 border-yellow-500" : "border-gray-300"}`}
+                            className={`p-4 h-[180px] rounded-lg border ${selectedPlan === sub.id ? "bg-yellow-50 border-yellow-500" : "border-gray-300"}`}
                             onClick={() => setSelectedPlan(sub.id)}
                         >
                             <div className="flex justify-between items-center">
@@ -133,13 +133,11 @@ export default function Detail() {
                             )}
 
                             {sub.profit > 0 && (
-                                <span className="bg-yellow-400 text-white px-2 py-1 text-xs rounded-full">
+                                <span className="bg-yellow-400  text-white px-2 py-1 text-xs rounded-full">
                                     {sub.profit} % foyda
                                 </span>
                             )}
-                            {sub.description && (
-                                <p className="text-gray-500 text-[12px] mt-[46px]">({(sub.description).toLocaleString()} /oy)</p>
-                            )}
+
                         </div>
                     ))
                 ) : (
