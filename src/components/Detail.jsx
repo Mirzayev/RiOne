@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import {NavLink, useParams} from "react-router-dom";
 
 export default function Detail() {
-    const { id } = useParams();
+    const {id} = useParams();
     // const  { name }  = useParams()
     const [tariff, setTariff] = useState(null);
     const [loading, setLoading] = useState(true);
     const [selectedPlan, setSelectedPlan] = useState(null);
 
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQwOTc4OTE4LCJpYXQiOjE3NDAzNzQxMTgsImp0aSI6ImZmN2U4ZWYwODNkZDQxOTlhYmJlMTVjZDNhODA4MWIxIiwidXNlcl9pZCI6IjVmNWVhNjZmLTAzYTMtNGUwZi04YmQxLWMwZDUwMjZkOTBjMSIsInV1aWQiOiI1ZjVlYTY2Zi0wM2EzLTRlMGYtOGJkMS1jMGQ1MDI2ZDkwYzEifQ.RWwrc45z_GMJLcGHDsWGPMpAK89SMZ58zFB8d6kY21s"
-    ;
+
 
     useEffect(() => {
         const fetchTariff = async () => {
@@ -17,7 +16,7 @@ export default function Detail() {
                 const response = await fetch(`https://dev.api.rione.dynamicsoft.uz/api/v1/plans/${id}`, {
                     method: 'GET',
                     headers: {
-                        'Authorization': `Bearer ${token}`,
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`,
                         'Content-Type': 'application/json'
                     }
                 });
@@ -54,10 +53,10 @@ export default function Detail() {
             const response = await fetch(`https://dev.api.rione.dynamicsoft.uz/api/v1/payment-link`, {
                 method: 'POST',
                 headers: {
-                    'Authorization': `Bearer ${token}`,
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ subscription_id: selectedPlan })
+                body: JSON.stringify({subscription_id: selectedPlan})
             });
 
             if (!response.ok) {

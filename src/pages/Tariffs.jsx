@@ -1,30 +1,39 @@
-import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {NavLink} from "react-router-dom";
+    import { useSearchParams } from "react-router-dom";
 
 export default function Tariffs() {
     const [tariffs, setTariffs] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [searchParams] = useSearchParams();
+    const [token,setToken] = useState(null);
 
     useEffect(() => {
-        fetch("https://dev.api.rione.dynamicsoft.uz/api/v1/plans", {
-            headers: {
-                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQxNzYyMzI0LCJpYXQiOjE3NDA0NjYzMjQsImp0aSI6Ijg2NDdiMTAyNDcyNTRmMTBhMmYzZjdlYThjZTE5ZjVmIiwidXNlcl9pZCI6Ijg4ODYxMmE2LWVkNjktNDcwMi04NGY5LTNiOTk5ODYxNGMzNSIsInV1aWQiOiI4ODg2MTJhNi1lZDY5LTQ3MDItODRmOS0zYjk5OTg2MTRjMzUifQ.iLGYtCRl2z9MhY9Op4m_kjHpjjCKnWa-BRJouJKSLJo"
-            }
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log("API Response:", data);
-                if (Array.isArray(data.data)) {
-                    setTariffs(data.data);
-                } else {
-                    console.error("Unexpected data format:", data);
+        if(!token){
+            setToken(searchParams.get("token"))
+            localStorage.setItem('token',searchParams.get("token"));
+            fetch("https://dev.api.rione.dynamicsoft.uz/api/v1/plans", {
+                headers: {
+                    "Authorization": `Bearer ${searchParams.get("token")}`,
                 }
-                setLoading(false);
             })
-            .catch(error => {
-                console.error("Error fetching tariffs:", error);
-                setLoading(false);
-            });
+                .then(response => response.json())
+                .then(data => {
+                    console.log("API Response:", data);
+                    if (Array.isArray(data.data)) {
+                        setTariffs(data.data);
+                    } else {
+                        console.error("Unexpected data format:", data);
+                    }
+                    setLoading(false);
+                })
+                .catch(error => {
+                    console.error("Error fetching tariffs:", error);
+                    setLoading(false);
+                })
+        }
+    console.log(searchParams.get('token'),"token")
+
     }, []);
 
     if (loading) {
@@ -52,12 +61,14 @@ export default function Tariffs() {
                             {tariff.old_price && (
                                 <>
                                     <p>/</p>
-                                    <strike className="text-red-400">{Number(tariff.old_price).toLocaleString() } ming</strike>
+                                    <strike
+                                        className="text-red-400">{Number(tariff.old_price).toLocaleString()} ming</strike>
                                 </>
                             )}
                         </div>
 
-                        <NavLink to={`plans/${tariff.id}`} className="mt-2 py-4 w-full bg-[#FBB621] text-white rounded-sm flex items-center gap-3 justify-center">
+                        <NavLink to={`plans/${tariff.id}`}
+                                 className="mt-2 py-4 w-full bg-[#FBB621] text-white rounded-sm flex items-center gap-3 justify-center">
                             <p>Tarifni tanlang</p> <i className="fa-solid fa-arrow-right mt-1"></i>
                         </NavLink>
 
