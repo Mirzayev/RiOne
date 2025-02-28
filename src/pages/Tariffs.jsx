@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {NavLink} from "react-router-dom";
     import { useSearchParams } from "react-router-dom";
+import Footer from "../components/Footer.jsx";
 
 export default function Tariffs() {
     const [tariffs, setTariffs] = useState([]);
@@ -87,6 +88,7 @@ export default function Tariffs() {
                     {(index + 1) % 1 === 0 && <div className="mb-6"></div>}
                 </React.Fragment>
             ))}
+            {!loading && <Footer/>}
         </div>
     );
 }

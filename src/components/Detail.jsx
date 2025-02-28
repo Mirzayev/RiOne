@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {NavLink, useParams} from "react-router-dom";
 import {useNavigate} from "react-router-dom";
+import Footer from "./Footer.jsx";
 
 export default function Detail() {
     const {id} = useParams();
@@ -8,7 +9,8 @@ export default function Detail() {
     const [tariff, setTariff] = useState(null);
     const [loading, setLoading] = useState(true);
     const [selectedPlan, setSelectedPlan] = useState(null);
-    const navigate = useNavigate();
+    // const navigate = useNavi
+    // gate();
 
     const back = localStorage.getItem('token')
 
@@ -146,7 +148,7 @@ export default function Detail() {
             </div>
 
             {/* To‘lov tugmasi */}
-            <div className="flex items-center mt-10 w-full">
+            <div className="flex items-center mt-10 mb-4 w-full">
                 <button
                     className="w-full bg-yellow-500 text-white py-3 rounded-lg text-lg font-semibold flex items-center justify-center"
                     disabled={!selectedPlan || isLoading} // Loading paytida disable bo'ladi
@@ -160,6 +162,7 @@ export default function Detail() {
                     )}
                 </button>
             </div>
+            {!isLoading && <Footer/>}
         </div>
     );
 }
