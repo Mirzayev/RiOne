@@ -9,11 +9,21 @@ export default function Footer() {
 
 
     return(
-        <div className={"flex  bg-white py-3 justify-center space-x-4"}>
-            <img className={" h-auto object-contain w-16"} src={humo} alt=""/>
-            <img className={" h-auto object-contain w-16"} src={visa} alt=""/>
-            <img className={" h-auto object-contain w-16"} src={uzcard} alt=""/>
-            <img className={" h-auto object-contain w-16"} src={mastercard} alt=""/>
-        </div>
+       <div>
+           <div className={"flex  bg-white py-4 justify-center space-x-4"}>
+               <img className={" h-auto object-contain w-16"} src={humo} alt=""/>
+               <img className={" h-auto object-contain w-16"} src={visa} alt=""/>
+               <img className={" h-auto object-contain w-16"} src={uzcard} alt=""/>
+               <img className={" h-auto object-contain w-16"} src={mastercard} alt=""/>
+           </div>
+           <div className="flex  bg-white rounded-2xl  ">
+               <a
+                   href="https://telegra.ph/OMMAVIY-OFERTA-03-13"
+                   className=" text-black   rounded-xl text-lg  "
+               >
+                   Ommaviy oferta
+               </a>
+           </div>
+       </div>
     )
 }
